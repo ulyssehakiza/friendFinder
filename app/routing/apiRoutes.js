@@ -1,5 +1,6 @@
 //a POST routes /api/friends - this handles incoming survey results. will also used to handle the compatibility logic
 //Load Data
+var path = require('path');
 var friendList = require("../data/friends.js");
 
 module.exports = function (app) {
@@ -19,7 +20,7 @@ module.exports = function (app) {
         for (var i = 0; i < friendList.length; i++) {
             var scoresDiff = 0;
             //run through scores to compare friends
-            for (var j = 0; j < newFriendScores.length; j++) {
+            for (var i = 0; i < newFriendScores.length; i++) {
                 scoresDiff += (Math.abs(parseInt(friendList[i].scores[j]) - parseInt(newFriendScores[j])));
             }
 
@@ -40,5 +41,6 @@ module.exports = function (app) {
 
         //pushes new submission into the friendsList array
         friendList.push(req.body);
+        
     });
 };
